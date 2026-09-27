@@ -1,0 +1,19 @@
+services:
+  - type: web
+    name: vera-simple-bot
+    runtime: python
+    plan: free
+    buildCommand: pip install -r requirements.txt
+    startCommand: uvicorn bot:app --host 0.0.0.0 --port $PORT --workers 1
+    healthCheckPath: /v1/healthz
+    envVars:
+      - key: PYTHON_VERSION
+        value: 3.12.7
+      - key: ANTHROPIC_API_KEY
+        sync: false
+      - key: TEAM_NAME
+        sync: false
+      - key: TEAM_MEMBERS
+        sync: false
+      - key: CONTACT_EMAIL
+        sync: false
